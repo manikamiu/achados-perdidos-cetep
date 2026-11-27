@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#a9c9f7">
+  <title>Céu Azul — Achados & Perdidos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="desktop">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-icon">☁</span>
+        <div>
+          <b>CÉU AZUL</b>
+          <small>ACHADOS & PERDIDOS • CETEP</small>
+        </div>
+      </div>
+      <div class="top-center">
+        <span class="status-dot"></span> SISTEMA ONLINE <span class="top-divider">//</span> CENTRAL DE OBJETOS
+      </div>
+      <div class="top-actions">
+        <span id="clock">00:00</span>
+        <button class="icon-btn" id="themeToggle" title="Alternar tema">☾</button>
+        <button class="icon-btn" id="accountBtn" title="Meu perfil">♙</button>
+      </div>
+    </header>
+    <aside class="dock">
+      <button class="dock-btn active" data-view="home" title="Início">⌂</button>
+      <button class="dock-btn" data-view="items" title="Mural">▦</button>
+      <button class="dock-btn" data-view="new" title="Cadastrar item">＋</button>
+      <button class="dock-btn" data-view="mine" title="Meus registros">♡</button>
+      <div class="dock-spacer"></div>
+      <button class="dock-btn" id="helpBtn" title="Ajuda">?</button>
+    </aside>
+    <main class="workspace">
+      <div class="welcome-row">
+        <div>
+          <p class="eyebrow">PAINEL DO CETEP <span class="tiny-star">✦</span></p>
+          <h1 id="pageTitle">Olá! Seja bem-vindo(a)!</h1>
+          <p class="subheading">Um lugarzinho para tudo encontrar seu caminho de volta.</p>
+        </div>
+        <div class="date-chip">☁ <span id="today"></span></div>
+      </div>
+      <section class="hero-window pixel-window">
+        <div class="window-bar">
+          <span>✿ welcome.exe</span>
+          <div class="window-controls"><i></i><i></i><i></i></div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-copy">
+            <span class="pill">CENTRAL DE ACHADOS E PERDIDOS</span>
+            <h2>Perdeu alguma coisa?<br><em>Vamos encontrar!</em></h2>
+            <p>Consulte os itens encontrados no CETEP ou avise a comunidade sobre algo que você perdeu.</p>
+            <div class="hero-buttons">
+              <button class="primary-btn" data-go="items">Explorar mural <span>→</span></button>
+              <button class="soft-btn" data-go="new">＋ Cadastrar item</button>
+            </div>
+          </div>
+          <div class="mascot-wrap">
+            <div class="cloud cloud-one">✦</div>
+            <div class="mascot-card">
+              <img
+  src="images/cinnamoroll.png"
+  alt="Cinnamoroll voando em seu aviãozinho">
+            </div>
+            <span class="mascot-caption">cinnamoroll says: you got this!</span>
+          </div>
+        </div>
+        <div class="hero-bottom">
+          <span>✧ UM CAMPUS MAIS CONECTADO</span>
+          <span>v. 1.0.0 <b>●</b></span>
+        </div>
+      </section>
+      <section class="stats-grid">
+        <article class="stat-card">
+          <span class="stat-icon">⌕</span>
+          <div>
+            <small>ITENS NO MURAL</small>
+            <strong id="totalCount">0</strong>
+          </div>
+          <span class="stat-deco">✧</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon">♡</span>
+          <div>
+            <small>ITENS PERDIDOS</small>
+            <strong id="lostCount">0</strong>
+          </div>
+          <span class="stat-deco">✧</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon">☁</span>
+          <div>
+            <small>ITENS ENCONTRADOS</small>
+            <strong id="foundCount">0</strong>
+          </div>
+          <span class="stat-deco">✧</span>
+        </article>
+      </section>
+      <section class="content-grid">
+        <div class="panel recent-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">ATUALIZAÇÕES</p>
+              <h3>Adicionados recentemente</h3>
+            </div>
+            <button class="text-btn" data-go="items">Ver mural completo ↗</button>
+          </div>
+          <div id="recentItems" class="item-grid compact-grid">
+            <div class="empty-state">Carregando o mural... ☁</div>
+          </div>
+        </div>
+        <aside class="side-column">
+          <div class="panel tip-panel">
+            <div class="tip-head">
+              <span>☁</span>
+              <small>LEMBRETE DO DIA</small>
+            </div>
+            <h3>Pequenos cuidados fazem diferença!</h3>
+            <p>Ao encontrar um objeto, registre onde e quando ele foi localizado. Assim, fica mais fácil devolver ao dono.</p>
+            <div class="tip-footer">♡ CINNAMOROLL APPROVES</div>
+          </div>
+          <div class="panel login-panel" id="loginPanel">
+            <div class="login-avatar">૮₍ ˶• ༝ •˶₎ა</div>
+            <div>
+              <b id="loginPanelTitle">Entre para participar!</b>
+              <p id="loginPanelText">Publique um item perdido ou encontrado.</p>
+            </div>
+            <button class="primary-btn small" id="loginPanelBtn">Fazer login →</button>
+          </div>
+        </aside>
+      </section>
+      <section class="view-section hidden" id="itemsView">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CATÁLOGO DA COMUNIDADE</p>
+            <h2>Mural de itens</h2>
+          </div>
+          <button class="primary-btn" data-go="new">＋ Novo registro</button>
+        </div>
+        <div class="filters panel">
+          <label class="search-box">⌕ <input id="searchInput" placeholder="Buscar por nome, descrição ou local..."></label>
+          <select id="kindFilter">
+            <option value="">Todos os tipos</option>
+            <option value="perdido">Perdidos</option>
+            <option value="encontrado">Encontrados</option>
+          </select>
+          <select id="categoryFilter">
+            <option value="">Todas as categorias</option>
+            <option>Eletrônicos</option>
+            <option>Material escolar</option>
+            <option>Documentos</option>
+            <option>Acessórios</option>
+            <option>Roupas</option>
+            <option>Outros</option>
+          </select>
+          <select id="statusFilter">
+            <option value="aberto">Em aberto</option>
+            <option value="devolvido">Devolvidos</option>
+            <option value="">Todos os status</option>
+          </select>
+        </div>
+        <div id="allItems" class="item-grid"></div>
+      </section>
+      <section class="view-section hidden" id="newView">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">COMPARTILHE COM A COMUNIDADE</p>
+            <h2>Cadastrar um item</h2>
+          </div>
+          <span class="sticker">✿ novo post!</span>
+        </div>
+        <form id="itemForm" class="panel form-panel">
+          <div class="form-intro">
+            <span class="form-icon">☁</span>
+            <div>
+              <b>Vamos colocar esse item no mural?</b>
+              <p>Preencha as informações abaixo. Os campos com * são obrigatórios.</p>
+            </div>
+          </div>
+          <div class="form-grid">
+            <label class="field full">Nome do item *<input name="title" maxlength="90" required placeholder="Ex.: Garrafinha azul"></label>
+            <label class="field">Tipo de registro *<select name="kind" required>
+              <option value="encontrado">Encontrei um item</option>
+              <option value="perdido">Perdi um item</option>
+            </select></label>
+            <label class="field">Categoria *<select name="category" required>
+              <option value="">Selecione...</option>
+              <option>Eletrônicos</option>
+              <option>Material escolar</option>
+              <option>Documentos</option>
+              <option>Acessórios</option>
+              <option>Roupas</option>
+              <option>Outros</option>
+            </select></label>
+            <label class="field">Local *<input name="location" maxlength="120" required placeholder="Ex.: Biblioteca, sala 04..."></label>
+            <label class="field">Data *<input name="item_date" type="date" required></label>
+            <label class="field full">Descrição *<textarea name="description" maxlength="1200" rows="4" required placeholder="Conte detalhes que ajudem a identificar o item..."></textarea></label>
+            <label class="field full">Foto do item <span class="optional">(opcional • JPG, PNG, WEBP ou GIF até 5 MB)</span><input name="image" id="imageInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+            <div class="image-preview full" id="imagePreview"><span>▧</span> A prévia da foto aparecerá aqui</div>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="soft-btn" data-go="items">Cancelar</button>
+            <button class="primary-btn" type="submit">Publicar no mural ✦</button>
+          </div>
+          <p class="form-note">Você poderá marcar seu registro como devolvido ou excluí-lo em “Meus registros”.</p>
+        </form>
+      </section>
+      <section class="view-section hidden" id="mineView">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">SEU ESPACINHO</p>
+            <h2>Meus registros</h2>
+          </div>
+        </div>
+        <div id="myItems" class="item-grid"></div>
+      </section>
+      <footer class="footer">
+        <span>☁ CÉU AZUL • ACHADOS & PERDIDOS</span>
+        <span>feito com carinho <b>♡</b></span>
+      </footer>
+    </main>
+  </div>
+  <div class="modal-backdrop hidden" id="authModal">
+    <section class="auth-modal pixel-window">
+      <div class="window-bar">
+        <span>♡ account.exe</span>
+        <button class="close-btn" data-close="authModal">×</button>
+      </div>
+      <div class="auth-body">
+        <div class="auth-mascot">૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა</div>
+        <h2 id="authTitle">Que bom ter você aqui!</h2>
+        <p id="authSubtitle">Entre na sua conta para participar.</p>
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-auth-tab="login">Entrar</button>
+          <button class="auth-tab" data-auth-tab="register">Criar conta</button>
+        </div>
+        <form id="authForm">
+          <div id="nameField" class="field hidden">Nome completo<input name="name" minlength="2" maxlength="60" placeholder="Como podemos te chamar?"></div>
+          <label class="field">E-mail (Gmail ou outro)<input name="email" type="email" required placeholder="voce@gmail.com" autocomplete="email"></label>
+          <label class="field">Senha<input name="password" type="password" minlength="8" required placeholder="Mínimo de 8 caracteres"></label>
+          <button class="primary-btn auth-submit" type="submit">Entrar na conta →</button>
+        </form>
+        <p class="auth-hint">Sua senha é armazenada com hash no banco de dados.</p>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop hidden" id="profileModal">
+    <section class="profile-modal pixel-window">
+      <div class="window-bar">
+        <span>☁ my_profile.exe</span>
+        <button class="close-btn" data-close="profileModal">×</button>
+      </div>
+      <div class="profile-body">
+        <div class="profile-heading">
+          <div class="profile-avatar" id="profileAvatarPreview">૮₍ ˶• ༝ •˶₎ა</div>
+          <div>
+            <h2>Meu perfil</h2>
+            <p>Personalize seu cantinho no CETEP.</p>
+          </div>
+        </div>
+        <form id="profileForm" enctype="multipart/form-data">
+          <label class="field full">Foto de perfil <span class="optional">(opcional • JPG, PNG, WEBP ou GIF até 5 MB)</span><input type="file" name="avatar" id="profileAvatarInput" accept="image/jpeg,image/png,image/webp,image/gif"></label>
+          <label class="field">Nome completo<input name="name" required minlength="2" maxlength="60"></label>
+          <label class="field">E-mail da conta<input id="profileEmail" type="email" disabled></label>
+          <label class="field">Telefone <span class="optional">(opcional)</span><input name="phone" type="tel" maxlength="30" placeholder="(00) 00000-0000"></label>
+          <label class="field">Rede social <span class="optional">(opcional)</span><input name="social" maxlength="160" placeholder="@seuusuario ou link do perfil"></label>
+          <div class="form-actions">
+            <button type="button" class="soft-btn" data-close="profileModal">Cancelar</button>
+            <button class="primary-btn">Salvar alterações ✦</button>
+          </div>
+        </form>
+        <p class="profile-privacy">Dica: informe telefone e rede social somente se quiser compartilhar esses dados. Evite publicar informações pessoais sensíveis.</p>
+      </div>
+    </section>
+  </div>
+  <div class="modal-backdrop hidden" id="detailModal">
+    <section class="detail-modal pixel-window">
+      <div class="window-bar">
+        <span>✧ item_details.exe</span>
+        <button class="close-btn" data-close="detailModal">×</button>
+      </div>
+      <div id="detailContent" class="detail-content"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
